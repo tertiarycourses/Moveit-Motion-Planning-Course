@@ -1,0 +1,60 @@
+
+# Install Moveit 1.0
+
+$ rosdep update
+$ sudo apt-get update
+$ sudo apt-get upgrade
+
+$ sudo apt-get install ros-kinetic-moveit
+
+# Activity: Launch Moveit Package
+
+$ cd ~/catkin_ws/src/
+$ git clone https://github.com/ROBOTIS-GIT/open_manipulator_controls.git
+$ git clone https://github.com/ROBOTIS-GIT/open_manipulator_dependencies.git
+$ cd ~/catkin_ws && catkin_make
+$ roslaunch open_manipulator_controllers joint_trajectory_controller.launch sim:=false
+
+# Activity: TB3+OM with Moveit 
+
+$ roslaunch turtlebot3_manipulation_gazebo turtlebot3_manipulation_gazebo.launch
+$ roslaunch turtlebot3_manipulation_moveit_config move_group.launch
+$ roslaunch turtlebot3_manipulation_moveit_config moveit_rviz.launch
+
+# Activity: Install Panda with Moveit
+
+cd ~/catkin_ws/src
+git clone -b kinetic-devel https://github.com/ros-planning/moveit_tutorials.git
+git clone -b kinetic-devel https://github.com/ros-planning/panda_moveit_config.git
+cd ~/catkin_ws
+catkin_make
+source devel/setup.bash
+
+# Activity: Panda Robot Moveit Demo
+
+roslaunch panda_moveit_config demo.launch rviz_tutorial:=true
+
+
+# Activity: Launch TB3+OM with Moveit
+
+$ roslaunch turtlebot3_manipulation_gazebo turtlebot3_manipulation_gazebo.launch
+$ roslaunch turtlebot3_manipulation_moveit_config move_group.launch
+$ roslaunch turtlebot3_manipulation_moveit_config moveit_rviz.launch
+
+
+# Move Group Python Interface
+
+$ roslaunch panda_moveit_config demo.launch
+$ rosrun moveit_tutorials move_group_python_interface_tutorial.py
+
+# Activity: Pick and Place with Moveit
+
+(terminal 1) roslaunch panda_moveit_config demo.launch
+(terminal 2) rosrun moveit_tutorials pick_place_tutorial
+
+# Activity: OM Pick and Place with Moveit
+
+$ roslaunch turtlebot3_manipulation_gazebo turtlebot3_manipulation_gazebo.launch
+$ roslaunch turtlebot3_manipulation_moveit_config move_group.launch
+$ python pick_move_place.py
+
